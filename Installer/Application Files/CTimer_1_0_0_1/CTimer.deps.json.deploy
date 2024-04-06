@@ -1,0 +1,119 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "CTimer/1.0.0": {
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.3",
+          "Vanara.PInvoke.PowrProf": "4.0.0"
+        },
+        "runtime": {
+          "CTimer.dll": {}
+        }
+      },
+      "Newtonsoft.Json/13.0.3": {
+        "runtime": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
+            "assemblyVersion": "13.0.0.0",
+            "fileVersion": "13.0.3.27908"
+          }
+        }
+      },
+      "Vanara.Core/4.0.0": {
+        "runtime": {
+          "lib/net8.0-windows7.0/Vanara.Core.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.0.0.0"
+          }
+        },
+        "resources": {
+          "lib/net8.0-windows7.0/fr/Vanara.Core.resources.dll": {
+            "locale": "fr"
+          }
+        }
+      },
+      "Vanara.PInvoke.Kernel32/4.0.0": {
+        "dependencies": {
+          "Vanara.Core": "4.0.0",
+          "Vanara.PInvoke.Shared": "4.0.0"
+        },
+        "runtime": {
+          "lib/net8.0-windows7.0/Vanara.PInvoke.Kernel32.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.0.0.0"
+          }
+        }
+      },
+      "Vanara.PInvoke.PowrProf/4.0.0": {
+        "dependencies": {
+          "Vanara.Core": "4.0.0",
+          "Vanara.PInvoke.Kernel32": "4.0.0",
+          "Vanara.PInvoke.Shared": "4.0.0"
+        },
+        "runtime": {
+          "lib/net8.0-windows7.0/Vanara.PInvoke.PowrProf.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.0.0.0"
+          }
+        }
+      },
+      "Vanara.PInvoke.Shared/4.0.0": {
+        "dependencies": {
+          "Vanara.Core": "4.0.0"
+        },
+        "runtime": {
+          "lib/net8.0-windows7.0/Vanara.PInvoke.Shared.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "CTimer/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Newtonsoft.Json/13.0.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-HrC5BXdl00IP9zeV+0Z848QWPAoCr9P3bDEZguI+gkLcBKAOxix/tLEAAHC+UvDNPv4a2d18lOReHMOagPa+zQ==",
+      "path": "newtonsoft.json/13.0.3",
+      "hashPath": "newtonsoft.json.13.0.3.nupkg.sha512"
+    },
+    "Vanara.Core/4.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-NaqvqJ6slAO4g+nW3xSA95ZklU69//vmw3sIiFt5DWzZqJD5rGby9UTVzIqXOgwBnlM8weqDrQHT5RDh5Wk9YA==",
+      "path": "vanara.core/4.0.0",
+      "hashPath": "vanara.core.4.0.0.nupkg.sha512"
+    },
+    "Vanara.PInvoke.Kernel32/4.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-P9+MG+n9smZpNlg7/rdUatCXKllRvJbbMiBU8AqRmWvwdaXCokYfshSrQg6P9F1Bx0V+8swpHyDntA4aOasN4g==",
+      "path": "vanara.pinvoke.kernel32/4.0.0",
+      "hashPath": "vanara.pinvoke.kernel32.4.0.0.nupkg.sha512"
+    },
+    "Vanara.PInvoke.PowrProf/4.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-KlKk0PBb0SDDJjWWSYcZr2yL5vYQim++ac/GMT5bQdvqPMduTV0jnCVs9VsNnom5EOKz6RIN655FOebJ3o6SXA==",
+      "path": "vanara.pinvoke.powrprof/4.0.0",
+      "hashPath": "vanara.pinvoke.powrprof.4.0.0.nupkg.sha512"
+    },
+    "Vanara.PInvoke.Shared/4.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-x4UYZjiBr8Zz78XbU9DTmpFpq2Fwhk/qe0t/LxHo59d2OtgNSeHB4I6qryg14z5OXO+Kt+lNSJP9b/HOsDp3fQ==",
+      "path": "vanara.pinvoke.shared/4.0.0",
+      "hashPath": "vanara.pinvoke.shared.4.0.0.nupkg.sha512"
+    }
+  }
+}
