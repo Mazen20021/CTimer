@@ -3,7 +3,6 @@ using System.Diagnostics;
 using System.Net;
 using System.IO;
 using Newtonsoft.Json;
-using CTimer.Updates;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Runtime.InteropServices;
@@ -11,8 +10,6 @@ namespace CTimer
 {
     public partial class Form1 : Form
     {
-        Hub h = new Hub();
-
         bool found = false;
         bool isclicked = false;
         bool started = false;
@@ -356,7 +353,7 @@ namespace CTimer
 
         private void checkForUpdatesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            h.CheckForUpdates();
+            
         }
     }
 }
