@@ -18,8 +18,4 @@
     <PackageReference Include="Vanara.PInvoke.PowrProf" Version="4.0.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="releases\latest\" />
-  </ItemGroup>
-
 </Project>
