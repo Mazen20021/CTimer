@@ -5,48 +5,25 @@ using System.IO;
 using Newtonsoft.Json;
 using System.Runtime.InteropServices;
 using System.Text;
-using System.Runtime.InteropServices;
+using static Vanara.PInvoke.FunctionHelper;
+using System.Diagnostics.Metrics;
+using System.Threading;
 namespace CTimer
 {
     public partial class Form1 : Form
     {
-        bool found = false;
         bool isclicked = false;
-        bool started = false;
         int seconds = 0;
         int minute = 0;
         int hours = 0;
-
-        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-        private static extern int GetWindowText(IntPtr hWnd, StringBuilder lpString, int nMaxCount);
-
-        [DllImport("user32.dll", SetLastError = true)]
-        private static extern IntPtr GetWindow(IntPtr hWnd, uint uCmd);
-
-        [DllImport("user32.dll")]
-        private static extern bool EnumWindows(EnumWindowsProc enumProc, IntPtr lParam);
-
-        private delegate bool EnumWindowsProc(IntPtr hWnd, IntPtr lParam);
-
-        private const uint GW_HWNDNEXT = 2;
-
-        [DllImport("user32.dll")]
-        private static extern int GetWindowThreadProcessId(IntPtr hWnd, out int processId);
-        [DllImport("Powrprof.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        int counter = 5;
+        bool is_shown;
+        [DllImport("PowrProf.dll", CharSet = CharSet.Auto, SetLastError = true)]
         private static extern bool SetSuspendState(bool hibernate, bool forceCritical, bool disableWakeEvent);
-
         public Form1()
         {
             InitializeComponent();
-           
-            getproceS();
-        }
-        private void getproceS()
-        {
-            System.Windows.Forms.Timer t = new System.Windows.Forms.Timer();
-            t.Interval = 1000;
-            t.Tick += getprocess;
-            t.Start();
+            modebox.SelectedIndex = 0;
         }
         private void timer(bool st)
         {
@@ -63,44 +40,7 @@ namespace CTimer
             }
 
         }
-        private void getprocess(object sender, EventArgs e)
-        {
-            Process[] processes = Process.GetProcesses();
-            List<string> existingItems = new List<string>(processbox.Items.Cast<string>());
 
-            foreach (var process in processes)
-            {
-                if (string.IsNullOrEmpty(process.MainWindowTitle))
-                    continue;
-
-                if (!existingItems.Contains(process.MainWindowTitle))
-                {
-                    processbox.Items.Add(process.MainWindowTitle);
-                }
-            }
-
-            foreach (string item in existingItems)
-            {
-                foreach (var process in processes)
-                {
-                    if (string.IsNullOrEmpty(process.MainWindowTitle))
-                        continue;
-
-                    if (item.Contains(process.MainWindowTitle))
-                    {
-                        found = true;
-                        break;
-                    }
-                }
-
-                if (!found)
-                {
-                    processbox.TabIndex = processbox.Items.Count - 1;
-                    processbox.Items.Remove(item);
-                }
-                found = false;
-            }
-        }
         int m, hs;
         private void start_Click(object sender, EventArgs e)
         {
@@ -114,6 +54,7 @@ namespace CTimer
             Hleft.Enabled = false;
             MLeft.Enabled = false;
             Sleft.Enabled = false;
+            is_shown = false;
             timer(true);
         }
         private void timechecker(object o, EventArgs e)
@@ -122,18 +63,20 @@ namespace CTimer
             {
                 if (int.Parse(Hleft.Text) < 0 || int.Parse(MLeft.Text) < 0 || int.Parse(Sleft.Text) < 0)
                 {
-                    if(int.Parse(Hleft.Text) < 0)
+                    if (int.Parse(Hleft.Text) < 0)
                     {
                         Hleft.Text = "0";
-                    }else if(int.Parse(MLeft.Text) < 0)
+                    }
+                    else if (int.Parse(MLeft.Text) < 0)
                     {
                         MLeft.Text = "0";
-                    }else if (int.Parse(Sleft.Text) < 0)
+                    }
+                    else if (int.Parse(Sleft.Text) < 0)
                     {
                         Sleft.Text = "0";
                     }
                 }
-                if (Hleft.Text == "0" && MLeft.Text == "0" && Sleft.Text == "0") 
+                if (Hleft.Text == "0" && MLeft.Text == "0" && Sleft.Text == "0")
                 {
                     isclicked = false;
                     start.Enabled = true;
@@ -168,13 +111,14 @@ namespace CTimer
                         MLeft.Text = minute.ToString();
                         hs = int.Parse(Hleft.Text);
                         Hleft.Text = (hs - 1).ToString();
-                    }else if (MLeft.Text == "0" && Hleft.Text !="0" && Sleft.Text == "0")
+                    }
+                    else if (MLeft.Text == "0" && Hleft.Text != "0" && Sleft.Text == "0")
                     {
                         minute = 59;
                         seconds = 59;
                         m = int.Parse(MLeft.Text);
                         MLeft.Text = minute.ToString();
-                        Hleft.Text  =  (int.Parse(Hleft.Text) -1) .ToString();
+                        Hleft.Text = (int.Parse(Hleft.Text) - 1).ToString();
                     }
                 }
                 Sleft.Text = seconds.ToString();
@@ -194,42 +138,44 @@ namespace CTimer
                     Hleft.Text = "0";
                     MLeft.Text = "0";
                     Sleft.Text = "0";
-                    MessageBox.Show("Shutdown Process ...\n");
-                    // Process.Start("shutdown", "/s /t 0");
+                    counter = 5;
                     hours = 0;
                     minute = 0;
                     seconds = 0;
+                    is_shown = false;
+                    Process.Start("shutdown", "/s /t 0");
                     break;
                 case "Restart":
                     Hleft.Text = "0";
                     MLeft.Text = "0";
                     Sleft.Text = "0";
-                    MessageBox.Show("Restart Process ...\n");
+                    counter = 5;
                     hours = 0;
                     minute = 0;
                     seconds = 0;
-                    //Process.Start("shutdown", "/r /t 0");
+                    is_shown = false;
+                    Process.Start("shutdown", "/r /t 0");
                     break;
                 case "Sleep":
                     Hleft.Text = "0";
                     MLeft.Text = "0";
                     Sleft.Text = "0";
-                    Console.WriteLine("Sleep Process ...\n");
+                    counter = 5;
                     hours = 0;
                     minute = 0;
                     seconds = 0;
-                    //SetSuspendState(false, true, true);
+                    is_shown = false;
+                    SetSuspendState(false, true, true);
                     break;
                 default:
-                    MessageBox.Show("no Process ...\n");
+                    counter = 5;
                     hours = 0;
                     minute = 0;
                     seconds = 0;
+                    is_shown = false;
                     break;
             };
-
         }
-
 
         private void modebox_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -351,9 +297,13 @@ namespace CTimer
             }
         }
 
-        private void checkForUpdatesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            
+
+            private void versionToolStripMenuItem_Click(object sender, EventArgs e)
+            {
+                MessageBox.Show("Current Version is 1.0", "Version 1.0", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
     }
-}
+
+    
+

@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            processbox = new ComboBox();
             modebox = new ComboBox();
             label1 = new Label();
             Hleft = new Label();
@@ -37,6 +36,7 @@
             label3 = new Label();
             menuStrip1 = new MenuStrip();
             sToolStripMenuItem = new ToolStripMenuItem();
+            versionToolStripMenuItem = new ToolStripMenuItem();
             MLeft = new Label();
             Sleft = new Label();
             label2 = new Label();
@@ -44,35 +44,25 @@
             mod_text = new Label();
             button1 = new Button();
             button2 = new Button();
-            checkForUpdatesToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
-            // processbox
-            // 
-            processbox.FormattingEnabled = true;
-            processbox.Location = new Point(12, 85);
-            processbox.Name = "processbox";
-            processbox.Size = new Size(360, 23);
-            processbox.TabIndex = 0;
-            processbox.Text = "Process";
-            // 
             // modebox
             // 
+            modebox.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             modebox.FormattingEnabled = true;
             modebox.Items.AddRange(new object[] { "Shutdown", "Sleep", "Restart", "DoNothing" });
-            modebox.Location = new Point(12, 114);
+            modebox.Location = new Point(12, 88);
             modebox.Name = "modebox";
-            modebox.Size = new Size(360, 23);
+            modebox.Size = new Size(360, 40);
             modebox.TabIndex = 3;
-            modebox.Text = "Mode";
             modebox.SelectedIndexChanged += modebox_SelectedIndexChanged;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(-4, 164);
+            label1.Location = new Point(-4, 151);
             label1.Name = "label1";
             label1.Size = new Size(231, 37);
             label1.TabIndex = 4;
@@ -83,7 +73,7 @@
             Hleft.AutoSize = true;
             Hleft.Cursor = Cursors.Hand;
             Hleft.Font = new Font("Segoe UI", 26.25F, FontStyle.Bold);
-            Hleft.Location = new Point(28, 221);
+            Hleft.Location = new Point(28, 215);
             Hleft.Name = "Hleft";
             Hleft.Size = new Size(40, 47);
             Hleft.TabIndex = 5;
@@ -105,7 +95,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 26.25F, FontStyle.Bold);
-            label3.Location = new Point(56, 29);
+            label3.Location = new Point(50, 29);
             label3.Name = "label3";
             label3.Size = new Size(291, 47);
             label3.TabIndex = 7;
@@ -113,7 +103,7 @@
             // 
             // menuStrip1
             // 
-            menuStrip1.Items.AddRange(new ToolStripItem[] { sToolStripMenuItem, checkForUpdatesToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { sToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(384, 24);
@@ -122,16 +112,24 @@
             // 
             // sToolStripMenuItem
             // 
+            sToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { versionToolStripMenuItem });
             sToolStripMenuItem.Name = "sToolStripMenuItem";
             sToolStripMenuItem.Size = new Size(61, 20);
             sToolStripMenuItem.Text = "Settings";
+            // 
+            // versionToolStripMenuItem
+            // 
+            versionToolStripMenuItem.Name = "versionToolStripMenuItem";
+            versionToolStripMenuItem.Size = new Size(112, 22);
+            versionToolStripMenuItem.Text = "Version";
+            versionToolStripMenuItem.Click += versionToolStripMenuItem_Click;
             // 
             // MLeft
             // 
             MLeft.AutoSize = true;
             MLeft.Cursor = Cursors.Hand;
             MLeft.Font = new Font("Segoe UI", 26.25F, FontStyle.Bold);
-            MLeft.Location = new Point(171, 221);
+            MLeft.Location = new Point(176, 215);
             MLeft.Name = "MLeft";
             MLeft.Size = new Size(40, 47);
             MLeft.TabIndex = 9;
@@ -143,7 +141,7 @@
             Sleft.AutoSize = true;
             Sleft.Cursor = Cursors.Hand;
             Sleft.Font = new Font("Segoe UI", 26.25F, FontStyle.Bold);
-            Sleft.Location = new Point(302, 221);
+            Sleft.Location = new Point(302, 215);
             Sleft.Name = "Sleft";
             Sleft.Size = new Size(40, 47);
             Sleft.TabIndex = 10;
@@ -154,7 +152,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 26.25F, FontStyle.Bold);
-            label2.Location = new Point(100, 221);
+            label2.Location = new Point(100, 215);
             label2.Name = "label2";
             label2.Size = new Size(29, 47);
             label2.TabIndex = 11;
@@ -164,7 +162,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 26.25F, FontStyle.Bold);
-            label4.Location = new Point(256, 221);
+            label4.Location = new Point(256, 215);
             label4.Name = "label4";
             label4.Size = new Size(29, 47);
             label4.TabIndex = 12;
@@ -174,8 +172,8 @@
             // 
             mod_text.AutoSize = true;
             mod_text.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            mod_text.ForeColor = Color.Olive;
-            mod_text.Location = new Point(221, 161);
+            mod_text.ForeColor = Color.Black;
+            mod_text.Location = new Point(221, 148);
             mod_text.Name = "mod_text";
             mod_text.Size = new Size(31, 37);
             mod_text.TabIndex = 13;
@@ -203,13 +201,6 @@
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
             // 
-            // checkForUpdatesToolStripMenuItem
-            // 
-            checkForUpdatesToolStripMenuItem.Name = "checkForUpdatesToolStripMenuItem";
-            checkForUpdatesToolStripMenuItem.Size = new Size(118, 20);
-            checkForUpdatesToolStripMenuItem.Text = "Check For Updates";
-            checkForUpdatesToolStripMenuItem.Click += checkForUpdatesToolStripMenuItem_Click;
-            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -228,7 +219,6 @@
             Controls.Add(Hleft);
             Controls.Add(label1);
             Controls.Add(modebox);
-            Controls.Add(processbox);
             Controls.Add(menuStrip1);
             FormBorderStyle = FormBorderStyle.FixedDialog;
             Icon = (Icon)resources.GetObject("$this.Icon");
@@ -244,8 +234,6 @@
         }
 
         #endregion
-
-        private ComboBox processbox;
         private ComboBox modebox;
         private Label label1;
         private Label Hleft;
@@ -260,6 +248,6 @@
         private Label mod_text;
         private Button button1;
         private Button button2;
-        private ToolStripMenuItem checkForUpdatesToolStripMenuItem;
+        private ToolStripMenuItem versionToolStripMenuItem;
     }
 }
