@@ -44,6 +44,7 @@
             mod_text = new Label();
             button1 = new Button();
             button2 = new Button();
+            checkForUpdatesToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -112,7 +113,7 @@
             // 
             // menuStrip1
             // 
-            menuStrip1.Items.AddRange(new ToolStripItem[] { sToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { sToolStripMenuItem, checkForUpdatesToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(384, 24);
@@ -202,6 +203,13 @@
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
             // 
+            // checkForUpdatesToolStripMenuItem
+            // 
+            checkForUpdatesToolStripMenuItem.Name = "checkForUpdatesToolStripMenuItem";
+            checkForUpdatesToolStripMenuItem.Size = new Size(118, 20);
+            checkForUpdatesToolStripMenuItem.Text = "Check For Updates";
+            checkForUpdatesToolStripMenuItem.Click += checkForUpdatesToolStripMenuItem_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -252,5 +260,6 @@
         private Label mod_text;
         private Button button1;
         private Button button2;
+        private ToolStripMenuItem checkForUpdatesToolStripMenuItem;
     }
 }

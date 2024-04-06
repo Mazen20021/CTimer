@@ -41,7 +41,7 @@ namespace CTimer
         public Form1()
         {
             InitializeComponent();
-            h.CheckForUpdates();
+           
             getproceS();
         }
         private void getproceS()
@@ -114,18 +114,41 @@ namespace CTimer
             hours = int.Parse(Hleft.Text) * 3600;
             start.Enabled = false;
             isclicked = true;
+            Hleft.Enabled = false;
+            MLeft.Enabled = false;
+            Sleft.Enabled = false;
             timer(true);
         }
         private void timechecker(object o, EventArgs e)
         {
             if (isclicked)
             {
+                if (int.Parse(Hleft.Text) < 0 || int.Parse(MLeft.Text) < 0 || int.Parse(Sleft.Text) < 0)
+                {
+                    if(int.Parse(Hleft.Text) < 0)
+                    {
+                        Hleft.Text = "0";
+                    }else if(int.Parse(MLeft.Text) < 0)
+                    {
+                        MLeft.Text = "0";
+                    }else if (int.Parse(Sleft.Text) < 0)
+                    {
+                        Sleft.Text = "0";
+                    }
+                }
+                if (Hleft.Text == "0" && MLeft.Text == "0" && Sleft.Text == "0") 
+                {
+                    isclicked = false;
+                    start.Enabled = true;
+                    setfunc(modebox.SelectedItem.ToString());
+                }
                 if (seconds == 0)
                 {
                     if (minute == 0 && hours > 0)
                     {
                         hours--;
-                        minute = 60;
+                        minute = 59;
+                        MLeft.Text = minute.ToString();
                     }
                     else if (minute > 0)
                     {
@@ -139,18 +162,29 @@ namespace CTimer
                 else if (seconds > 0)
                 {
                     seconds--;
-                    if (minute == 0 && hours > 0 && seconds == 0)
+                    if (minute == 0 && hours > 0)
                     {
                         hours--;
                         minute = 59;
                         seconds = 59;
+                        m = int.Parse(MLeft.Text);
+                        MLeft.Text = minute.ToString();
                         hs = int.Parse(Hleft.Text);
                         Hleft.Text = (hs - 1).ToString();
+                    }else if (MLeft.Text == "0" && Hleft.Text !="0" && Sleft.Text == "0")
+                    {
+                        minute = 59;
+                        seconds = 59;
+                        m = int.Parse(MLeft.Text);
+                        MLeft.Text = minute.ToString();
+                        Hleft.Text  =  (int.Parse(Hleft.Text) -1) .ToString();
                     }
                 }
                 Sleft.Text = seconds.ToString();
-                if (seconds == 0 && minute == 0 && hours == 0)
+                if (Hleft.Text == "0" && MLeft.Text == "0" && Sleft.Text == "0")
                 {
+                    isclicked = false;
+                    start.Enabled = true;
                     setfunc(modebox.SelectedItem.ToString());
                 }
             }
@@ -163,7 +197,6 @@ namespace CTimer
                     Hleft.Text = "0";
                     MLeft.Text = "0";
                     Sleft.Text = "0";
-                    isclicked = false;
                     MessageBox.Show("Shutdown Process ...\n");
                     // Process.Start("shutdown", "/s /t 0");
                     hours = 0;
@@ -174,7 +207,6 @@ namespace CTimer
                     Hleft.Text = "0";
                     MLeft.Text = "0";
                     Sleft.Text = "0";
-                    isclicked = false;
                     MessageBox.Show("Restart Process ...\n");
                     hours = 0;
                     minute = 0;
@@ -185,7 +217,6 @@ namespace CTimer
                     Hleft.Text = "0";
                     MLeft.Text = "0";
                     Sleft.Text = "0";
-                    isclicked = false;
                     Console.WriteLine("Sleep Process ...\n");
                     hours = 0;
                     minute = 0;
@@ -193,7 +224,6 @@ namespace CTimer
                     //SetSuspendState(false, true, true);
                     break;
                 default:
-                    isclicked = false;
                     MessageBox.Show("no Process ...\n");
                     hours = 0;
                     minute = 0;
@@ -254,6 +284,12 @@ namespace CTimer
                 isclicked = false;
                 start.Enabled = true;
                 timer(false);
+                Hleft.Text = "0";
+                MLeft.Text = "0";
+                Sleft.Text = "0";
+                Hleft.Enabled = true;
+                MLeft.Enabled = true;
+                Sleft.Enabled = true;
             }
             else
             {
@@ -265,7 +301,7 @@ namespace CTimer
         private void button2_Click(object sender, EventArgs e)
         {
             timer(false);
-            var x = MessageBox.Show("Are You Sure You Want To "+modebox.SelectedItem.ToString(), "Force To "+ modebox.SelectedItem.ToString(), MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            var x = MessageBox.Show("Are You Sure You Want To " + modebox.SelectedItem.ToString(), "Force To " + modebox.SelectedItem.ToString(), MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (x == DialogResult.Yes)
             {
                 switch (modebox.SelectedItem.ToString())
@@ -316,6 +352,11 @@ namespace CTimer
             {
                 timer(true);
             }
+        }
+
+        private void checkForUpdatesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            h.CheckForUpdates();
         }
     }
 }
