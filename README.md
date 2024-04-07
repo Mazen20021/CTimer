@@ -33,6 +33,9 @@ It is a source Code You can Modify it or build it then run Or Run It From
 Experience the convenience and efficiency of CTime in revolutionizing !
  
 ## Snapshots
-### Login
+### Timer Page
 ![CTime Application](https://github.com/Mazen20021/CTimer/assets/131156076/41612d1d-96ac-4192-b88b-d8569680456a)
+
+### Process Controller Page
+![Process](https://github.com/Mazen20021/CTimer/assets/131156076/78ba23dc-947b-40ba-b8db-fece1b9182f6)
 
