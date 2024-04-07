@@ -18,7 +18,7 @@ Computer Control Timer (CTime) is a sophisticated application designed to provid
 
 ## Installation
 It is a source Code You can Modify it or build it then run Or Run It From 
-[Installer]([Published.rar](https://github.com/Mazen20021/CTimer/blob/master/published.rar))
+[Installer](https://github.com/Mazen20021/CTimer/blob/master/published.rar)
 
 ## Usage
 -You Don't Need To Worry AnyMore You Can Leave Your PC Running doing a certain task and by using this application your pc 
