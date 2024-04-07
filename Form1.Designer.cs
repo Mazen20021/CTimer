@@ -37,6 +37,7 @@
             menuStrip1 = new MenuStrip();
             sToolStripMenuItem = new ToolStripMenuItem();
             versionToolStripMenuItem = new ToolStripMenuItem();
+            actionByProcessToolStripMenuItem = new ToolStripMenuItem();
             MLeft = new Label();
             Sleft = new Label();
             label2 = new Label();
@@ -44,7 +45,8 @@
             mod_text = new Label();
             button1 = new Button();
             button2 = new Button();
-            actionByProcessToolStripMenuItem = new ToolStripMenuItem();
+            label5 = new Label();
+            Tseconds = new Label();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -63,7 +65,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(-4, 151);
+            label1.Location = new Point(-4, 134);
             label1.Name = "label1";
             label1.Size = new Size(231, 37);
             label1.TabIndex = 4;
@@ -74,7 +76,7 @@
             Hleft.AutoSize = true;
             Hleft.Cursor = Cursors.Hand;
             Hleft.Font = new Font("Segoe UI", 26.25F, FontStyle.Bold);
-            Hleft.Location = new Point(28, 215);
+            Hleft.Location = new Point(28, 178);
             Hleft.Name = "Hleft";
             Hleft.Size = new Size(40, 47);
             Hleft.TabIndex = 5;
@@ -121,16 +123,23 @@
             // versionToolStripMenuItem
             // 
             versionToolStripMenuItem.Name = "versionToolStripMenuItem";
-            versionToolStripMenuItem.Size = new Size(180, 22);
+            versionToolStripMenuItem.Size = new Size(168, 22);
             versionToolStripMenuItem.Text = "Version";
             versionToolStripMenuItem.Click += versionToolStripMenuItem_Click;
+            // 
+            // actionByProcessToolStripMenuItem
+            // 
+            actionByProcessToolStripMenuItem.Name = "actionByProcessToolStripMenuItem";
+            actionByProcessToolStripMenuItem.Size = new Size(168, 22);
+            actionByProcessToolStripMenuItem.Text = "Action By Process";
+            actionByProcessToolStripMenuItem.Click += actionByProcessToolStripMenuItem_Click;
             // 
             // MLeft
             // 
             MLeft.AutoSize = true;
             MLeft.Cursor = Cursors.Hand;
             MLeft.Font = new Font("Segoe UI", 26.25F, FontStyle.Bold);
-            MLeft.Location = new Point(176, 215);
+            MLeft.Location = new Point(176, 178);
             MLeft.Name = "MLeft";
             MLeft.Size = new Size(40, 47);
             MLeft.TabIndex = 9;
@@ -142,7 +151,7 @@
             Sleft.AutoSize = true;
             Sleft.Cursor = Cursors.Hand;
             Sleft.Font = new Font("Segoe UI", 26.25F, FontStyle.Bold);
-            Sleft.Location = new Point(302, 215);
+            Sleft.Location = new Point(302, 178);
             Sleft.Name = "Sleft";
             Sleft.Size = new Size(40, 47);
             Sleft.TabIndex = 10;
@@ -153,7 +162,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 26.25F, FontStyle.Bold);
-            label2.Location = new Point(100, 215);
+            label2.Location = new Point(100, 178);
             label2.Name = "label2";
             label2.Size = new Size(29, 47);
             label2.TabIndex = 11;
@@ -163,7 +172,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 26.25F, FontStyle.Bold);
-            label4.Location = new Point(256, 215);
+            label4.Location = new Point(256, 178);
             label4.Name = "label4";
             label4.Size = new Size(29, 47);
             label4.TabIndex = 12;
@@ -174,7 +183,7 @@
             mod_text.AutoSize = true;
             mod_text.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             mod_text.ForeColor = Color.Black;
-            mod_text.Location = new Point(221, 148);
+            mod_text.Location = new Point(221, 131);
             mod_text.Name = "mod_text";
             mod_text.Size = new Size(31, 37);
             mod_text.TabIndex = 13;
@@ -202,12 +211,27 @@
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
             // 
-            // actionByProcessToolStripMenuItem
+            // label5
             // 
-            actionByProcessToolStripMenuItem.Name = "actionByProcessToolStripMenuItem";
-            actionByProcessToolStripMenuItem.Size = new Size(180, 22);
-            actionByProcessToolStripMenuItem.Text = "Action By Process";
-            actionByProcessToolStripMenuItem.Click += actionByProcessToolStripMenuItem_Click;
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label5.ForeColor = Color.Black;
+            label5.Location = new Point(0, 245);
+            label5.Name = "label5";
+            label5.Size = new Size(201, 37);
+            label5.TabIndex = 16;
+            label5.Text = "Total Seconds:";
+            // 
+            // Tseconds
+            // 
+            Tseconds.AutoSize = true;
+            Tseconds.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            Tseconds.ForeColor = Color.Black;
+            Tseconds.Location = new Point(221, 245);
+            Tseconds.Name = "Tseconds";
+            Tseconds.Size = new Size(33, 37);
+            Tseconds.TabIndex = 17;
+            Tseconds.Text = "0";
             // 
             // Form1
             // 
@@ -215,6 +239,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.CadetBlue;
             ClientSize = new Size(384, 361);
+            Controls.Add(Tseconds);
+            Controls.Add(label5);
             Controls.Add(button2);
             Controls.Add(button1);
             Controls.Add(mod_text);
@@ -258,5 +284,7 @@
         private Button button2;
         private ToolStripMenuItem versionToolStripMenuItem;
         private ToolStripMenuItem actionByProcessToolStripMenuItem;
+        private Label label5;
+        private Label Tseconds;
     }
 }

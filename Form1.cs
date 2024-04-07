@@ -13,11 +13,6 @@ namespace CTimer
     public partial class Form1 : Form
     {
         bool isclicked = false;
-        int seconds = 0;
-        int minute = 0;
-        int hours = 0;
-        int counter = 5;
-        bool is_shown;
         [DllImport("PowrProf.dll", CharSet = CharSet.Auto, SetLastError = true)]
         private static extern bool SetSuspendState(bool hibernate, bool forceCritical, bool disableWakeEvent);
         public Form1()
@@ -41,93 +36,45 @@ namespace CTimer
 
         }
 
-        int m, hs;
+        int times = 0;
         private void start_Click(object sender, EventArgs e)
         {
-            m = int.Parse(MLeft.Text);
-            hs = int.Parse(Hleft.Text);
-            seconds = int.Parse(Sleft.Text);
-            minute = int.Parse(MLeft.Text) * 60;
-            hours = int.Parse(Hleft.Text) * 3600;
             start.Enabled = false;
             isclicked = true;
             Hleft.Enabled = false;
             MLeft.Enabled = false;
             Sleft.Enabled = false;
-            is_shown = false;
+            times = (int.Parse(Hleft.Text) * 3600 + int.Parse(MLeft.Text) * 60 + int.Parse(Sleft.Text));
+            Tseconds.Text = times.ToString();
             timer(true);
         }
         private void timechecker(object o, EventArgs e)
         {
             if (isclicked)
             {
-                if (int.Parse(Hleft.Text) < 0 || int.Parse(MLeft.Text) < 0 || int.Parse(Sleft.Text) < 0)
+                if(times == 0)
                 {
-                    if (int.Parse(Hleft.Text) < 0)
-                    {
-                        Hleft.Text = "0";
-                    }
-                    else if (int.Parse(MLeft.Text) < 0)
-                    {
-                        MLeft.Text = "0";
-                    }
-                    else if (int.Parse(Sleft.Text) < 0)
-                    {
-                        Sleft.Text = "0";
-                    }
-                }
-                if (Hleft.Text == "0" && MLeft.Text == "0" && Sleft.Text == "0")
-                {
-                    isclicked = false;
-                    start.Enabled = true;
+                    times = 0;
                     setfunc(modebox.SelectedItem.ToString());
                 }
-                if (seconds == 0)
+                else if(times > 0)
                 {
-                    if (minute == 0 && hours > 0)
-                    {
-                        hours--;
-                        minute = 59;
-                        MLeft.Text = minute.ToString();
-                    }
-                    else if (minute > 0)
-                    {
-                        minute--;
-                        m = int.Parse(MLeft.Text);
-                        MLeft.Text = (m - 1).ToString();
-                        seconds = 59;
-                    }
-
+                    Tseconds.Text = times.ToString();
+                    times--;
                 }
-                else if (seconds > 0)
+                else
                 {
-                    seconds--;
-                    if (minute == 0 && hours > 0)
-                    {
-                        hours--;
-                        minute = 59;
-                        seconds = 59;
-                        m = int.Parse(MLeft.Text);
-                        MLeft.Text = minute.ToString();
-                        hs = int.Parse(Hleft.Text);
-                        Hleft.Text = (hs - 1).ToString();
-                    }
-                    else if (MLeft.Text == "0" && Hleft.Text != "0" && Sleft.Text == "0")
-                    {
-                        minute = 59;
-                        seconds = 59;
-                        m = int.Parse(MLeft.Text);
-                        MLeft.Text = minute.ToString();
-                        Hleft.Text = (int.Parse(Hleft.Text) - 1).ToString();
-                    }
+                    times = 0;
+                    Tseconds.Text = times.ToString();
                 }
-                Sleft.Text = seconds.ToString();
-                if (Hleft.Text == "0" && MLeft.Text == "0" && Sleft.Text == "0")
-                {
-                    isclicked = false;
-                    start.Enabled = true;
-                    setfunc(modebox.SelectedItem.ToString());
-                }
+            }
+            else
+            {
+                Hleft.Enabled = true;
+                MLeft.Enabled = true;
+                Sleft.Enabled = true;
+                start.Enabled = true;
+                timer(false);
             }
         }
         private void setfunc(string mode)
@@ -138,41 +85,27 @@ namespace CTimer
                     Hleft.Text = "0";
                     MLeft.Text = "0";
                     Sleft.Text = "0";
-                    counter = 5;
-                    hours = 0;
-                    minute = 0;
-                    seconds = 0;
-                    is_shown = false;
+                    isclicked = false;
                     Process.Start("shutdown", "/s /t 0");
                     break;
                 case "Restart":
                     Hleft.Text = "0";
                     MLeft.Text = "0";
                     Sleft.Text = "0";
-                    counter = 5;
-                    hours = 0;
-                    minute = 0;
-                    seconds = 0;
-                    is_shown = false;
+  
+                    isclicked = false;
                     Process.Start("shutdown", "/r /t 0");
                     break;
                 case "Sleep":
                     Hleft.Text = "0";
                     MLeft.Text = "0";
                     Sleft.Text = "0";
-                    counter = 5;
-                    hours = 0;
-                    minute = 0;
-                    seconds = 0;
-                    is_shown = false;
+                    isclicked = false;
                     SetSuspendState(false, true, true);
                     break;
                 default:
-                    counter = 5;
-                    hours = 0;
-                    minute = 0;
-                    seconds = 0;
-                    is_shown = false;
+                    MessageBox.Show("No Process");
+                    isclicked = false;
                     break;
             };
         }
@@ -221,6 +154,8 @@ namespace CTimer
         private void button1_Click(object sender, EventArgs e)
         {
             timer(false);
+            times = 0;
+            Tseconds.Text = "0";
             var x = MessageBox.Show("Are You Sure You Want To Reset The Timer ? ", "Stopping Time", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (x == DialogResult.Yes)
             {
@@ -255,18 +190,12 @@ namespace CTimer
                         Sleft.Text = "0";
                         isclicked = false;
                         Process.Start("shutdown", "/s /t 0");
-                        hours = 0;
-                        minute = 0;
-                        seconds = 0;
                         break;
                     case "Restart":
                         Hleft.Text = "0";
                         MLeft.Text = "0";
                         Sleft.Text = "0";
                         isclicked = false;
-                        hours = 0;
-                        minute = 0;
-                        seconds = 0;
                         Process.Start("shutdown", "/r /t 0");
                         break;
                     case "Sleep":
@@ -274,16 +203,10 @@ namespace CTimer
                         MLeft.Text = "0";
                         Sleft.Text = "0";
                         isclicked = false;
-                        hours = 0;
-                        minute = 0;
-                        seconds = 0;
                         SetSuspendState(false, true, true);
                         break;
                     default:
                         isclicked = false;
-                        hours = 0;
-                        minute = 0;
-                        seconds = 0;
                         break;
                 };
             }
