@@ -29,68 +29,99 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CountdownForm));
-            label1 = new Label();
-            counter = new Label();
+            menuStrip1 = new MenuStrip();
+            settingsToolStripMenuItem = new ToolStripMenuItem();
+            actionByTimerToolStripMenuItem = new ToolStripMenuItem();
+            button2 = new Button();
             label3 = new Label();
+            start = new Button();
+            processbox = new ComboBox();
+            modbox = new ComboBox();
+            menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
-            // label1
+            // menuStrip1
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(74, 9);
-            label1.Margin = new Padding(6, 0, 6, 0);
-            label1.Name = "label1";
-            label1.Size = new Size(315, 32);
-            label1.TabIndex = 0;
-            label1.Text = "Save Every Thing You Have ";
+            resources.ApplyResources(menuStrip1, "menuStrip1");
+            menuStrip1.Items.AddRange(new ToolStripItem[] { settingsToolStripMenuItem });
+            menuStrip1.Name = "menuStrip1";
             // 
-            // counter
+            // settingsToolStripMenuItem
             // 
-            counter.AutoSize = true;
-            counter.Location = new Point(74, 91);
-            counter.Margin = new Padding(6, 0, 6, 0);
-            counter.Name = "counter";
-            counter.Size = new Size(42, 32);
-            counter.TabIndex = 1;
-            counter.Text = "00";
+            resources.ApplyResources(settingsToolStripMenuItem, "settingsToolStripMenuItem");
+            settingsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { actionByTimerToolStripMenuItem });
+            settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
+            // 
+            // actionByTimerToolStripMenuItem
+            // 
+            resources.ApplyResources(actionByTimerToolStripMenuItem, "actionByTimerToolStripMenuItem");
+            actionByTimerToolStripMenuItem.Name = "actionByTimerToolStripMenuItem";
+            actionByTimerToolStripMenuItem.Click += actionByTimerToolStripMenuItem_Click;
+            // 
+            // button2
+            // 
+            resources.ApplyResources(button2, "button2");
+            button2.Name = "button2";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
             // label3
             // 
-            label3.AutoSize = true;
-            label3.Location = new Point(289, 91);
-            label3.Margin = new Padding(6, 0, 6, 0);
+            resources.ApplyResources(label3, "label3");
             label3.Name = "label3";
-            label3.Size = new Size(100, 32);
-            label3.TabIndex = 2;
-            label3.Text = "Seconds";
+            // 
+            // start
+            // 
+            resources.ApplyResources(start, "start");
+            start.Name = "start";
+            start.UseVisualStyleBackColor = true;
+            start.Click += start_Click;
+            // 
+            // processbox
+            // 
+            resources.ApplyResources(processbox, "processbox");
+            processbox.FormattingEnabled = true;
+            processbox.Name = "processbox";
+            // 
+            // modbox
+            // 
+            resources.ApplyResources(modbox, "modbox");
+            modbox.FormattingEnabled = true;
+            modbox.Items.AddRange(new object[] { resources.GetString("modbox.Items"), resources.GetString("modbox.Items1"), resources.GetString("modbox.Items2"), resources.GetString("modbox.Items3") });
+            modbox.Name = "modbox";
             // 
             // CountdownForm
             // 
-            AutoScaleDimensions = new SizeF(14F, 32F);
+            resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.White;
-            ClientSize = new Size(478, 181);
+            BackColor = Color.CadetBlue;
+            Controls.Add(modbox);
+            Controls.Add(button2);
             Controls.Add(label3);
-            Controls.Add(counter);
-            Controls.Add(label1);
-            Font = new Font("Segoe UI Semibold", 18F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            Controls.Add(start);
+            Controls.Add(processbox);
+            Controls.Add(menuStrip1);
             FormBorderStyle = FormBorderStyle.FixedDialog;
-            Icon = (Icon)resources.GetObject("$this.Icon");
-            Margin = new Padding(6);
+            MainMenuStrip = menuStrip1;
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "CountdownForm";
-            StartPosition = FormStartPosition.CenterScreen;
-            Text = "Times Up!";
             Load += CountdownForm_Load;
+            menuStrip1.ResumeLayout(false);
+            menuStrip1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private Label label1;
-        private Label counter;
+        private MenuStrip menuStrip1;
+        private ToolStripMenuItem settingsToolStripMenuItem;
+        private ToolStripMenuItem actionByTimerToolStripMenuItem;
+        private Button button2;
         private Label label3;
+        private Button start;
+        private ComboBox processbox;
+        private ComboBox modbox;
     }
 }

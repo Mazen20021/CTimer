@@ -44,6 +44,7 @@
             mod_text = new Label();
             button1 = new Button();
             button2 = new Button();
+            actionByProcessToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -112,7 +113,7 @@
             // 
             // sToolStripMenuItem
             // 
-            sToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { versionToolStripMenuItem });
+            sToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { versionToolStripMenuItem, actionByProcessToolStripMenuItem });
             sToolStripMenuItem.Name = "sToolStripMenuItem";
             sToolStripMenuItem.Size = new Size(61, 20);
             sToolStripMenuItem.Text = "Settings";
@@ -120,7 +121,7 @@
             // versionToolStripMenuItem
             // 
             versionToolStripMenuItem.Name = "versionToolStripMenuItem";
-            versionToolStripMenuItem.Size = new Size(112, 22);
+            versionToolStripMenuItem.Size = new Size(180, 22);
             versionToolStripMenuItem.Text = "Version";
             versionToolStripMenuItem.Click += versionToolStripMenuItem_Click;
             // 
@@ -201,6 +202,13 @@
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
             // 
+            // actionByProcessToolStripMenuItem
+            // 
+            actionByProcessToolStripMenuItem.Name = "actionByProcessToolStripMenuItem";
+            actionByProcessToolStripMenuItem.Size = new Size(180, 22);
+            actionByProcessToolStripMenuItem.Text = "Action By Process";
+            actionByProcessToolStripMenuItem.Click += actionByProcessToolStripMenuItem_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -249,5 +257,6 @@
         private Button button1;
         private Button button2;
         private ToolStripMenuItem versionToolStripMenuItem;
+        private ToolStripMenuItem actionByProcessToolStripMenuItem;
     }
 }

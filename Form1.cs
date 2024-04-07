@@ -254,8 +254,7 @@ namespace CTimer
                         MLeft.Text = "0";
                         Sleft.Text = "0";
                         isclicked = false;
-                        MessageBox.Show("Shutdown Process ...\n");
-                        // Process.Start("shutdown", "/s /t 0");
+                        Process.Start("shutdown", "/s /t 0");
                         hours = 0;
                         minute = 0;
                         seconds = 0;
@@ -265,26 +264,23 @@ namespace CTimer
                         MLeft.Text = "0";
                         Sleft.Text = "0";
                         isclicked = false;
-                        MessageBox.Show("Restart Process ...\n");
                         hours = 0;
                         minute = 0;
                         seconds = 0;
-                        //Process.Start("shutdown", "/r /t 0");
+                        Process.Start("shutdown", "/r /t 0");
                         break;
                     case "Sleep":
                         Hleft.Text = "0";
                         MLeft.Text = "0";
                         Sleft.Text = "0";
                         isclicked = false;
-                        Console.WriteLine("Sleep Process ...\n");
                         hours = 0;
                         minute = 0;
                         seconds = 0;
-                        //SetSuspendState(false, true, true);
+                        SetSuspendState(false, true, true);
                         break;
                     default:
                         isclicked = false;
-                        MessageBox.Show("no Process ...\n");
                         hours = 0;
                         minute = 0;
                         seconds = 0;
@@ -296,14 +292,25 @@ namespace CTimer
                 timer(true);
             }
         }
-
-
-            private void versionToolStripMenuItem_Click(object sender, EventArgs e)
-            {
-                MessageBox.Show("Current Version is 1.0", "Version 1.0", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+        private void versionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Current Version is 1.0", "Version 1.0", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        private void actions()
+        {
+            CountdownForm c = new CountdownForm();
+            Application.Run(c);
+        }
+        private void actionByProcessToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Close();
+            Thread t = new Thread(actions);
+            t.SetApartmentState(ApartmentState.STA);
+            t.IsBackground = false;
+            t.Start();
         }
     }
+}
 
     
 
