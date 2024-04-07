@@ -153,12 +153,12 @@ namespace CTimer
 
         private void button1_Click(object sender, EventArgs e)
         {
-            timer(false);
-            times = 0;
-            Tseconds.Text = "0";
+            
             var x = MessageBox.Show("Are You Sure You Want To Reset The Timer ? ", "Stopping Time", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (x == DialogResult.Yes)
             {
+                times = -1;
+                Tseconds.Text = "0";
                 isclicked = false;
                 start.Enabled = true;
                 timer(false);
