@@ -34,7 +34,7 @@ Experience the convenience and efficiency of CTime in revolutionizing !
  
 ## Snapshots
 ### Timer Page
-![CTime Application](https://github.com/Mazen20021/CTimer/assets/131156076/41612d1d-96ac-4192-b88b-d8569680456a)
+![workinh](https://github.com/Mazen20021/CTimer/assets/131156076/d5f82641-5f7c-4198-a8c5-a97c42800daf)
 
 ### Process Controller Page
 ![Process](https://github.com/Mazen20021/CTimer/assets/131156076/78ba23dc-947b-40ba-b8db-fece1b9182f6)
