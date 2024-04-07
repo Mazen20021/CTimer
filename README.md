@@ -17,7 +17,7 @@ Computer Control Timer (CTime) is a sophisticated application designed to provid
 - .NET Framework: Version 8.0 or higher
 
 ## Installation
-It is a source Code You can Modify it or build it then run Or Run It From 
+It is a source Code You can Modify it or build it then run Or Install the application From 
 [Installer](https://github.com/Mazen20021/CTimer/blob/master/published.rar)
 
 ## Usage
