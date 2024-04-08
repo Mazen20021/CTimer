@@ -32,6 +32,7 @@
             menuStrip1 = new MenuStrip();
             settingsToolStripMenuItem = new ToolStripMenuItem();
             actionByTimerToolStripMenuItem = new ToolStripMenuItem();
+            versionToolStripMenuItem = new ToolStripMenuItem();
             button2 = new Button();
             label3 = new Label();
             start = new Button();
@@ -49,7 +50,7 @@
             // settingsToolStripMenuItem
             // 
             resources.ApplyResources(settingsToolStripMenuItem, "settingsToolStripMenuItem");
-            settingsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { actionByTimerToolStripMenuItem });
+            settingsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { versionToolStripMenuItem, actionByTimerToolStripMenuItem });
             settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
             // 
             // actionByTimerToolStripMenuItem
@@ -57,6 +58,12 @@
             resources.ApplyResources(actionByTimerToolStripMenuItem, "actionByTimerToolStripMenuItem");
             actionByTimerToolStripMenuItem.Name = "actionByTimerToolStripMenuItem";
             actionByTimerToolStripMenuItem.Click += actionByTimerToolStripMenuItem_Click;
+            // 
+            // versionToolStripMenuItem
+            // 
+            resources.ApplyResources(versionToolStripMenuItem, "versionToolStripMenuItem");
+            versionToolStripMenuItem.Name = "versionToolStripMenuItem";
+            versionToolStripMenuItem.Click += versionToolStripMenuItem_Click;
             // 
             // button2
             // 
@@ -106,7 +113,6 @@
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "CountdownForm";
-            Load += CountdownForm_Load;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             ResumeLayout(false);
@@ -123,5 +129,6 @@
         private Button start;
         private ComboBox processbox;
         private ComboBox modbox;
+        private ToolStripMenuItem versionToolStripMenuItem;
     }
 }

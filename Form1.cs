@@ -52,12 +52,12 @@ namespace CTimer
         {
             if (isclicked)
             {
-                if(times == 0)
+                if (times == 0)
                 {
                     times = 0;
                     setfunc(modebox.SelectedItem.ToString());
                 }
-                else if(times > 0)
+                else if (times > 0)
                 {
                     Tseconds.Text = times.ToString();
                     times--;
@@ -92,7 +92,7 @@ namespace CTimer
                     Hleft.Text = "0";
                     MLeft.Text = "0";
                     Sleft.Text = "0";
-  
+
                     isclicked = false;
                     Process.Start("shutdown", "/r /t 0");
                     break;
@@ -153,7 +153,7 @@ namespace CTimer
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
+
             var x = MessageBox.Show("Are You Sure You Want To Reset The Timer ? ", "Stopping Time", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (x == DialogResult.Yes)
             {
@@ -226,11 +226,28 @@ namespace CTimer
         }
         private void actionByProcessToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Close();
-            Thread t = new Thread(actions);
-            t.SetApartmentState(ApartmentState.STA);
-            t.IsBackground = false;
-            t.Start();
+            if (isclicked)
+            {
+                var x = MessageBox.Show("Are You Sure You Want To Change Timer Mode You are Currently Running Timer", "Timer Running All Ready !", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (DialogResult.Yes == x)
+                {
+                    Close();
+                    Thread t = new Thread(actions);
+                    t.SetApartmentState(ApartmentState.STA);
+                    t.IsBackground = false;
+                    t.Start();
+
+                }
+            }
+            else
+            {
+                Close();
+                Thread t = new Thread(actions);
+                t.SetApartmentState(ApartmentState.STA);
+                t.IsBackground = false;
+                t.Start();
+            }
+
         }
     }
 }

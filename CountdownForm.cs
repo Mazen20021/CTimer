@@ -10,15 +10,18 @@ using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using System.Diagnostics;
 using System.Diagnostics.Metrics;
+using static System.Windows.Forms.Design.AxImporter;
 namespace CTimer
 {
     public partial class CountdownForm : Form
     {
+        string p;
+        bool started = false;
         public CountdownForm()
         {
             InitializeComponent();
-            
             modbox.SelectedIndex = 0;
+            button2.Enabled = false;
             settimer();
         }
         private void settimer()
@@ -32,7 +35,7 @@ namespace CTimer
         {
             Process[] processes = Process.GetProcesses();
             List<string> existingItems = new List<string>(processbox.Items.Cast<string>());
-            
+
             foreach (var process in processes)
             {
                 if (string.IsNullOrEmpty(process.MainWindowTitle))
@@ -63,7 +66,7 @@ namespace CTimer
                         found = true;
                         break;
                     }
-                   
+
                 }
                 if (!found)
                 {
@@ -78,7 +81,6 @@ namespace CTimer
         private static extern bool SetSuspendState(bool hibernate, bool forceCritical, bool disableWakeEvent);
         [DllImport("user32.dll")]
         private static extern int GetWindowThreadProcessId(IntPtr hWnd, out int processId);
-
         private static bool IsExplorerCopyingOrMovingFiles(Process process)
         {
             // Get the main window title of the Explorer process
@@ -92,15 +94,11 @@ namespace CTimer
         }
         [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
         private static extern int GetWindowText(IntPtr hWnd, StringBuilder lpString, int nMaxCount);
-
         [DllImport("user32.dll", SetLastError = true)]
         private static extern IntPtr GetWindow(IntPtr hWnd, uint uCmd);
-
         [DllImport("user32.dll")]
         private static extern bool EnumWindows(EnumWindowsProc enumProc, IntPtr lParam);
-
         private delegate bool EnumWindowsProc(IntPtr hWnd, IntPtr lParam);
-
         private const uint GW_HWNDNEXT = 2;
         private static string GetMainWindowTitle(Process process)
         {
@@ -137,11 +135,28 @@ namespace CTimer
         }
         private void actionByTimerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Close();
-            Thread t = new Thread(mains);
-            t.SetApartmentState(ApartmentState.STA);
-            t.IsBackground = false;
-            t.Start();
+            if(started)
+            {
+                var x = MessageBox.Show("Are You Sure You Want To Change Timer Mode You are Currently Running Timer", "Timer Running All Ready !", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (DialogResult.Yes == x)
+                {
+                    Close();
+                    Thread t = new Thread(mains);
+                    t.SetApartmentState(ApartmentState.STA);
+                    t.IsBackground = false;
+                    t.Start();
+
+                }
+            }
+            else
+            {
+                Close();
+                Thread t = new Thread(mains);
+                t.SetApartmentState(ApartmentState.STA);
+                t.IsBackground = false;
+                t.Start();
+            }
+
         }
         private void setfunc(string mode)
         {
@@ -165,8 +180,6 @@ namespace CTimer
                     break;
             };
         }
-        string p;
-        bool started = false;
         private void checkprocess(object o, EventArgs e)
         {
             if (!processbox.Items.Contains(p) && started)
@@ -176,17 +189,33 @@ namespace CTimer
         }
         private void start_Click(object sender, EventArgs e)
         {
-            p = processbox.SelectedItem.ToString();
-            started = true;
-            System.Windows.Forms.Timer ts = new System.Windows.Forms.Timer();
-            ts.Interval = 1000;
-            ts.Tick += checkprocess;
-            ts.Start();
+            if(processbox.SelectedItem !=  null)
+            {
+                start.Enabled = false;
+                button2.Enabled = true;
+                p = processbox.SelectedItem.ToString();
+                started = true;
+                System.Windows.Forms.Timer ts = new System.Windows.Forms.Timer();
+                ts.Interval = 1000;
+                ts.Tick += checkprocess;
+                ts.Start();
+            }
+            else
+            {
+                MessageBox.Show("Please Choose A Process", "No Process is selected", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
         }
-
         private void button2_Click(object sender, EventArgs e)
         {
+            start.Enabled = true;
+            button2.Enabled = false;
             started = false;
+        }
+
+        private void versionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Current Version is 1.0", "Version 1.0", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

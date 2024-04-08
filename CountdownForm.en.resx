@@ -117,9 +117,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="actionByTimerToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>158, 22</value>
+  <data name="versionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Version</value>
   </data>
   <data name="actionByTimerToolStripMenuItem.Text" xml:space="preserve">
     <value>Action By Timer</value>
@@ -127,6 +126,7 @@
   <data name="settingsToolStripMenuItem.Text" xml:space="preserve">
     <value>Settings</value>
   </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="menuStrip1.Size" type="System.Drawing.Size, System.Drawing">
     <value>384, 24</value>
   </data>
@@ -181,9 +181,6 @@
   </data>
   <data name="modbox.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 18pt, style=Bold</value>
-  </data>
-  <data name="modbox.Items3" xml:space="preserve">
-    <value>Nothing</value>
   </data>
   <data name="modbox.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 176</value>
