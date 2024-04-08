@@ -47,6 +47,9 @@
             button2 = new Button();
             label5 = new Label();
             Tseconds = new Label();
+            HBox = new TextBox();
+            mBox = new TextBox();
+            SBox = new TextBox();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -65,7 +68,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(-4, 134);
+            label1.Location = new Point(2, 134);
             label1.Name = "label1";
             label1.Size = new Size(231, 37);
             label1.TabIndex = 4;
@@ -76,7 +79,7 @@
             Hleft.AutoSize = true;
             Hleft.Cursor = Cursors.Hand;
             Hleft.Font = new Font("Segoe UI", 26.25F, FontStyle.Bold);
-            Hleft.Location = new Point(28, 178);
+            Hleft.Location = new Point(30, 175);
             Hleft.Name = "Hleft";
             Hleft.Size = new Size(40, 47);
             Hleft.TabIndex = 5;
@@ -139,7 +142,7 @@
             MLeft.AutoSize = true;
             MLeft.Cursor = Cursors.Hand;
             MLeft.Font = new Font("Segoe UI", 26.25F, FontStyle.Bold);
-            MLeft.Location = new Point(176, 178);
+            MLeft.Location = new Point(176, 175);
             MLeft.Name = "MLeft";
             MLeft.Size = new Size(40, 47);
             MLeft.TabIndex = 9;
@@ -151,7 +154,7 @@
             Sleft.AutoSize = true;
             Sleft.Cursor = Cursors.Hand;
             Sleft.Font = new Font("Segoe UI", 26.25F, FontStyle.Bold);
-            Sleft.Location = new Point(302, 178);
+            Sleft.Location = new Point(302, 175);
             Sleft.Name = "Sleft";
             Sleft.Size = new Size(40, 47);
             Sleft.TabIndex = 10;
@@ -216,7 +219,7 @@
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.Black;
-            label5.Location = new Point(0, 245);
+            label5.Location = new Point(2, 249);
             label5.Name = "label5";
             label5.Size = new Size(201, 37);
             label5.TabIndex = 16;
@@ -227,11 +230,38 @@
             Tseconds.AutoSize = true;
             Tseconds.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             Tseconds.ForeColor = Color.Black;
-            Tseconds.Location = new Point(221, 245);
+            Tseconds.Location = new Point(221, 250);
             Tseconds.Name = "Tseconds";
             Tseconds.Size = new Size(33, 37);
             Tseconds.TabIndex = 17;
             Tseconds.Text = "0";
+            // 
+            // HBox
+            // 
+            HBox.Location = new Point(16, 225);
+            HBox.MaxLength = 2;
+            HBox.Name = "HBox";
+            HBox.Size = new Size(73, 23);
+            HBox.TabIndex = 18;
+            HBox.TextChanged += HBox_TextChanged;
+            // 
+            // mBox
+            // 
+            mBox.Location = new Point(158, 225);
+            mBox.MaxLength = 2;
+            mBox.Name = "mBox";
+            mBox.Size = new Size(75, 23);
+            mBox.TabIndex = 19;
+            mBox.TextChanged += mBox_TextChanged;
+            // 
+            // SBox
+            // 
+            SBox.Location = new Point(283, 225);
+            SBox.MaxLength = 2;
+            SBox.Name = "SBox";
+            SBox.Size = new Size(75, 23);
+            SBox.TabIndex = 20;
+            SBox.TextChanged += SBox_TextChanged;
             // 
             // Form1
             // 
@@ -239,6 +269,9 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.CadetBlue;
             ClientSize = new Size(384, 361);
+            Controls.Add(SBox);
+            Controls.Add(mBox);
+            Controls.Add(HBox);
             Controls.Add(Tseconds);
             Controls.Add(label5);
             Controls.Add(button2);
@@ -261,6 +294,7 @@
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "CTime";
+            Load += Form1_Load;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             ResumeLayout(false);
@@ -286,5 +320,8 @@
         private ToolStripMenuItem actionByProcessToolStripMenuItem;
         private Label label5;
         private Label Tseconds;
+        private TextBox HBox;
+        private TextBox mBox;
+        private TextBox SBox;
     }
 }

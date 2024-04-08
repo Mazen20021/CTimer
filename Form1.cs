@@ -13,11 +13,16 @@ namespace CTimer
     public partial class Form1 : Form
     {
         bool isclicked = false;
+        int times = 0;
+
         [DllImport("PowrProf.dll", CharSet = CharSet.Auto, SetLastError = true)]
         private static extern bool SetSuspendState(bool hibernate, bool forceCritical, bool disableWakeEvent);
         public Form1()
         {
             InitializeComponent();
+            mBox.Visible = false;
+            SBox.Visible = false;
+            HBox.Visible = false;
             modebox.SelectedIndex = 0;
         }
         private void timer(bool st)
@@ -36,9 +41,12 @@ namespace CTimer
 
         }
 
-        int times = 0;
+
         private void start_Click(object sender, EventArgs e)
         {
+            mBox.Visible = false;
+            SBox.Visible = false;
+            HBox.Visible = false;
             start.Enabled = false;
             isclicked = true;
             Hleft.Enabled = false;
@@ -117,37 +125,37 @@ namespace CTimer
 
         private void Hleft_Click(object sender, EventArgs e)
         {
-            if (int.Parse(Hleft.Text) >= 0 && int.Parse(Hleft.Text) < 24)
+            if (HBox.Visible)
             {
-                Hleft.Text = (int.Parse(Hleft.Text) + 1).ToString();
+                HBox.Visible = false;
             }
-            else if (int.Parse(Hleft.Text) == 24)
+            else
             {
-                Hleft.Text = "0";
+                HBox.Visible = true;
             }
         }
 
         private void MLeft_Click(object sender, EventArgs e)
         {
-            if (int.Parse(MLeft.Text) >= 0 && int.Parse(MLeft.Text) <= 60)
+            if (mBox.Visible)
             {
-                MLeft.Text = (int.Parse(MLeft.Text) + 1).ToString();
+                mBox.Visible = false;
             }
-            else if (int.Parse(MLeft.Text) == 60)
+            else
             {
-                MLeft.Text = "0";
+                mBox.Visible = true;
             }
         }
 
         private void Sleft_Click(object sender, EventArgs e)
         {
-            if (int.Parse(Sleft.Text) >= 0 && int.Parse(Sleft.Text) <= 60)
+            if (SBox.Visible)
             {
-                Sleft.Text = (int.Parse(Sleft.Text) + 1).ToString();
+                SBox.Visible = false;
             }
-            else if (int.Parse(Sleft.Text) == 60)
+            else
             {
-                Sleft.Text = "0";
+                SBox.Visible = true;
             }
         }
 
@@ -247,6 +255,43 @@ namespace CTimer
                 t.IsBackground = false;
                 t.Start();
             }
+
+        }
+
+        private void HBox_TextChanged(object sender, EventArgs e)
+        {
+            Hleft.Text = HBox.Text;
+        }
+
+        private void mBox_TextChanged(object sender, EventArgs e)
+        {
+            if (int.Parse(mBox.Text) <= 60 && mBox.Text != "")
+            {
+                MLeft.Text = mBox.Text;
+            }
+            else
+            {
+                mBox.Text = "60";
+                MessageBox.Show("Minutes Limited 60", "Limit Reached", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void SBox_TextChanged(object sender, EventArgs e)
+        {
+            if (int.Parse(SBox.Text) <= 60 && SBox.Text != "")
+            {
+                Sleft.Text = SBox.Text;
+            }
+            else
+            {
+                SBox.Text = "60";
+                MessageBox.Show("Seconds Limited 60", "Limit Reached", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
 
         }
     }
